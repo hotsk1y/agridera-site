@@ -143,7 +143,7 @@
 
       <div class="sorts" >
         <div class="sorts__item" v-for="p in products">
-          <a href="tomato-one.html" class="sorts__item-img">
+          <a :href="'tomato-one.html#'+p.id" class="sorts__item-img">
             <img :src="p.image" alt="1">
           </a>
           <div class="sorts__item-text">

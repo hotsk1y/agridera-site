@@ -86,20 +86,20 @@
 
 
 
-  <section class="tomato-content">
+  <section class="tomato-content" id="app">
     <div class="container">
       <div class="section__img">
         <div class="section__img-wrapper">
-          <img src="images/tomato-img.jpg" alt="">
-          <a href="#">Download PDF</a>
+          <img :src="product.image" alt="">
+          <a href="#" @click.prevent="addToCard(product.id)" v-if="!btnVisible">Add to cart</a>
+          <a href="contact-us.html" @click.prevent="addToCard(product.id)" v-if="btnVisible">Go to cart</a>
         </div>
       </div>
 
       <div class="section__title">
-        TAG 1002 (TAG 809) <br>
+        {{product.title}} <br>
         <span>
-          Tomato Determinate
-          Red Standard Round
+          {{product.short_text}}
         </span>
       </div>
 
