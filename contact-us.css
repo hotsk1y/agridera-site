@@ -11,6 +11,42 @@ body{
   background-color: #F7F7F7;
 }
 
+.cart .contaier{
+  display: flex;  
+}
+.cart-item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+  background-color: #B9B9B9;
+  padding: 15px;
+}
+.cart-item button{
+  padding: 15px;
+  margin-left: 20px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-item-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; 
+}
+.cart-item-info img{
+  height: 100px;
+}
+
+.form-done__item{
+  margin-bottom: 25px;
+}
+.form-done__title{
+ font-weight: bold;
+}
+
 .header{
   background-color: #fff;
   padding: 20px 0;

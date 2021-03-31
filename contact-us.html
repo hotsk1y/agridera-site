@@ -81,57 +81,71 @@
     <img src="images/contact-banner.jpg" alt="">
   </div>
 
-  <section class="contacts-content">
+  <section class="contacts-content" id="app">
+
+
     <div class="container">
 
       <div class="section__title">
         Contact us
       </div>
+
+      <div class="cart">
+        <div class="cart-item" v-if="cart" v-for="p in cart">
+          <div class="cart-item-info">
+            <img :src="p.image" alt="">
+            <div class="title">{{p.title}}</div>
+            <div class="disc">{{p.short_text}}</div>
+          </div>
+          <button @click.prevent=" removeFromCart(p.id)">x</button>
+        </div>
+      </div>
+
       <div class="separator"><img src="images/separator.png" alt=""></div>
 
-      <form class="form">
+      <form action="#" class="form" v-if="formVisible" @submit.prevent="makeOrder()">
         <div class="form-contacts">
 
           <div class="form-contacts-item">
             <div class="input__title">Name *</div>
             <div class="contacts-item__input">
-              <input type="text" required>
+              <input type="text" required v-model="contactFields.name">
             </div>
           </div>
           <div class="form-contacts-item">
             <div class="input__title">Company Name</div>
             <div class="contacts-item__input">
-              <input type="text">
+              <input type="text" v-model="contactFields.companyName">
             </div>
           </div>
           <div class="form-contacts-item">
             <div class="input__title">Position</div>
             <div class="contacts-item__input">
-              <input type="text">
+              <input type="text" v-model="contactFields.position">
             </div>
           </div>
           <div class="form-contacts-item">
             <div class="input__title">City</div>
             <div class="contacts-item__input">
-              <input type="text">
+              <input type="text" v-model="contactFields.city">
             </div>
           </div>
           <div class="form-contacts-item">
             <div class="input__title">Country</div>
             <div class="contacts-item__input">
-              <input type="text">
+              <input type="text" v-model="contactFields.country">
             </div>
           </div>
           <div class="form-contacts-item">
             <div class="input__title">Telephone</div>
             <div class="contacts-item__input">
-              <input type="tel">
+              <input type="tel" v-model="contactFields.telephone">
             </div>
           </div>
           <div class="form-contacts-item">
             <div class="input__title">Email *</div>
             <div class="contacts-item__input">
-              <input type="email" required>
+              <input type="email" required v-model="contactFields.email">
             </div>
           </div>
 
@@ -142,7 +156,7 @@
           <div class="form-about-item">
             <div class="input__title">You are a</div>
             <div class="about-item__input">
-              <select name="" id="">
+              <select name="" id="" v-model="contactFields.occupation">
                 <option value="">seed producer</option>
                 <option value="">seed producer 2</option>
                 <option value="">seed producer 3</option>
@@ -153,14 +167,14 @@
           <div class="form-contacts-item">
             <div class="input__title">If other, please specify</div>
             <div class="contacts-item__input">
-              <input type="text">
+              <input type="text" v-model="contactFields.other">
             </div>
           </div>
 
           <div class="form-contacts-item">
             <div class="input__title">You are interested in</div>
             <div class="contacts-item__input">
-              <textarea></textarea>
+              <textarea v-model="contactFields.interests"></textarea>
             </div>
           </div>
 
@@ -168,13 +182,60 @@
             <div class="input__title capcha-title">Please type this code</div>
             <div class="contacts-item__input capcha-input">
               <img src="images/capcha.png" alt="">
-              <input type="text">
+              <input type="text" v-model="contactFields.capcha">
               <button type="submit">Send Message</button>
             </div>
           </div>
 
         </div>
       </form>
+
+
+      <div class="form-done" v-if="!formVisible">
+        <div class="form-done__item">
+          <div class="form-done__title">Name</div>
+          <div class="form-done__descr">{{contactFields.name}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">Company Name</div>
+          <div class="form-done__descr">{{contactFields.companyName}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">Position</div>
+          <div class="form-done__descr">{{contactFields.position}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">City</div>
+          <div class="form-done__descr">{{contactFields.city}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">Country</div>
+          <div class="form-done__descr">{{contactFields.country}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">Telephone</div>
+          <div class="form-done__descr">{{contactFields.telephone}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">Email</div>
+          <div class="form-done__descr">{{contactFields.email}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">You are a</div>
+          <div class="form-done__descr">{{contactFields.occupation}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">If other, please specify</div>
+          <div class="form-done__descr">{{contactFields.other}}</div>
+        </div>
+        <div class="form-done__item">
+          <div class="form-done__title">You are interested in</div>
+          <div class="form-done__descr">{{contactFields.interests}}</div>
+        </div>
+
+
+      </div>
+
 
     </div>
 
