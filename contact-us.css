@@ -148,9 +148,6 @@ body{
  display: flex;
  justify-content: space-between;
 }
-.form-contacts{
-
-}
 .form-contacts-item{
   margin-bottom: 25px;
 }
