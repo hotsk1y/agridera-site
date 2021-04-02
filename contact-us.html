@@ -90,6 +90,12 @@
         Contact us
       </div>
 
+      <div class="capitals" >
+        <ul>
+          <li v-for="item in capitals">{{item}}</li>
+        </ul>
+      </div>
+
       <div class="cart">
         <div class="cart-item" v-if="cart" v-for="p in cart">
           <div class="cart-item-info">

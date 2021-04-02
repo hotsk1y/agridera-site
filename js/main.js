@@ -12,7 +12,12 @@ var app = new Vue({
     btnVisible: 0,
     cart: [],
     contactFields: [],
-    formVisible: 1
+    formVisible: 1,
+    capitalsUrl: 'https://restcountries.eu/rest/v2/regionalbloc/eu',
+    capitals: []
+  },
+  created() {
+    this.sendRequest();
   },
   mounted:
     function () {
@@ -69,6 +74,16 @@ var app = new Vue({
       this.cart = []
       localStorage.clear()
       this.formVisible = 0;
+    },
+    sendRequest() {
+      fetch(this.capitalsUrl)
+        .then(result => result.json())
+        .then(data => {
+          for (country of data) {
+            this.capitals.push(country.capital)
+          }
+        })
+      // console.log(this.capitals)
     }
   }
 })
