@@ -86,11 +86,13 @@
 
     <div class="container">
 
+      <button class="subscribe-for-push">SUBSCRIBE FOR PUSH NOTIFICATIONS</button>
+
       <div class="section__title">
         Contact us
       </div>
 
-      <div class="capitals" >
+      <div class="capitals">
         <ul>
           <li v-for="item in capitals">{{item}}</li>
         </ul>
@@ -318,6 +320,43 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    function askPermission() {
+  return new Promise(function (resolve, reject) {
+    const permissionResult = Notification.requestPermission(function (result) { resolve(result) })
+    if (permissionResult) {
+      permissionResult.then(resolve, reject)
+    }
+  })
+    .then(function (permissionResult) {
+      if (permissionResult !== 'granted') {
+        throw new Error(`We weren't granted permission`)
+      }
+    })
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/sw.js')
+    .then(function () {
+      console.log('Service worker registered')
+    })
+
+  navigator.serviceWorker.ready.then(registration => {
+    if ('PushManager' in window) {
+      document.querySelector('.subscribe-for-push')
+        .addEventListener('click', () => {
+          if (confirm("Do you want to subscribe to notifications?")) {
+            alert('You are registered!')
+            askPermission()
+          } else {
+            alert("You are not registered :(")
+          }                    
+        })
+    }
+  })
+}
+  </script>
 </body>
 
 </html>
